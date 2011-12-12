@@ -84,6 +84,8 @@ BOARD_USE_USB_MASS_STORAGE_SWITCH := true
 
 BOARD_UMS_LUNFILE := "/sys/devices/platform/usb_mass_storage/lun0/file"
 
+BOARD_CUSTOM_USB_CONTROLLER := ../../device/samsung/cooper/UsbController.cpp
+
 # # cat /proc/mtd
 # dev:    size   erasesize  name
 # mtd0: 00480000 00020000 "recovery"
