@@ -44,9 +44,12 @@
 		<value > 0.1 </value>
 	</array>
 	<array name="cpu.speeds" >
-		<value > 600000 </value>
-		<value > 400000 </value>
-		<value > 128000 </value>
+		<value>19200</value>
+                <value>122880</value>
+                <value>128000</value>
+                <value>245760</value>
+                <value>384000</value>
+                <value>528000</value>
 	</array>
 	<item name="cpu.idle" >
 		0.1
