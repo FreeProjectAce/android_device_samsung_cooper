@@ -33,37 +33,32 @@ PRODUCT_DEVICE := cooper
 PRODUCT_MODEL := GT-S5830
 
 PRODUCT_PACKAGES += \
-    LiveWallpapers \
-    LiveWallpapersPicker \
-    VisualizationWallpapers \
-    MagicSmokeWallpapers \
-    VisualizationWallpapers \
-    librs_jni \
-    Gallery3d \
-    SpareParts \
-    Development \
-    Term \
     libOmxCore \
     libOmxVidEnc \
     FM \
     Torch \
     make_ext4fs \
+    FM \
+    rzscontrol \
+    SamsungServiceMode \
+    bdaddr_read \
+    toggleshutter \
+    patchlcs \
+    dexpreopt \
+    dump_image \
+    e2fsck \
     brcm_patchram_plus \
     sec_touchscreen.kcm \
     copybit.cooper \
     lights.cooper \
     gralloc.cooper \
     setup_fs \
-    dexpreopt
+    erase_image \
+    flash_image \
+    screencap
 
 # proprietary side of the device
 $(call inherit-product-if-exists, vendor/samsung/cooper/cooper-vendor.mk)
-
-DISABLE_DEXPREOPT := false
-
-PRODUCT_COPY_FILES += \
-    device/samsung/cooper/qwerty.kl:system/usr/keylayout/qwerty.kl \
-    device/samsung/cooper/sec_touchscreen.kl:system/usr/keylayout/sec_touchscreen.kl
 
 # fstab
 PRODUCT_COPY_FILES += \
@@ -92,11 +87,14 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
     frameworks/base/data/etc/android.hardware.camera.autofocus.xml:system/etc/permissions/android.hardware.camera.autofocus.xml \
+    frameworks/base/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
     frameworks/base/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
     frameworks/base/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/base/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
     frameworks/base/data/etc/android.hardware.touchscreen.multitouch.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.xml
+    frameworks/base/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
+    frameworks/base/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml
 
 #Kernel Modules
 PRODUCT_COPY_FILES += \
@@ -104,6 +102,7 @@ PRODUCT_COPY_FILES += \
     device/samsung/cooper/prebuilt/modules/fsr_stl.ko:root/lib/modules/fsr_stl.ko \
     device/samsung/cooper/prebuilt/modules/sec_param.ko:root/lib/modules/sec_param.ko \
     device/samsung/cooper/prebuilt/ar6000.ko:system/wifi/ar6000.ko \
+    device/samsung/cooper/prebuilt/get_macaddrs:system/bin/get_macaddrs \
     device/samsung/cooper/prebuilt/cifs.ko:system/lib/modules/2.6.32.9-perf/cifs.ko \
     device/samsung/cooper/prebuilt/zram.ko:system/lib/modules/2.6.32.9-perf/zram.ko
     
@@ -131,7 +130,14 @@ PRODUCT_COPY_FILES += \
 
 #Media profile
 PRODUCT_COPY_FILES += \
-    device/samsung/cooper/media_profiles.xml:system/etc/media_profiles.xml
+    device/samsung/cooper/media_profiles.xml:system/etc/media_profiles.xml \
+    device/samsung/cooper/prebuilt/audio.conf:system/etc/bluetooth/audio.conf
+## keymap
+PRODUCT_COPY_FILES += \
+    device/samsung/cooper/prebuilt/qwerty.kl:system/usr/keylayout/qwerty.kl \
+    device/samsung/cooper/prebuilt/sec_jack.kl:system/usr/keylayout/sec_jack.kl \
+    device/samsung/cooper/prebuilt/sec_key.kl:system/usr/keylayout/sec_key.kl \
+    device/samsung/cooper/sec_touchscreen.kl:system/usr/keylayout/sec_touchscreen.kl
 
 PRODUCT_PROPERTY_OVERRIDES := \
     keyguard.no_require_sim=true \
@@ -169,6 +175,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.dexopt-data-only=1 \
     ro.opengles.version=131072  \
     ro.compcache.default=0
+
 # See comment at the top of this file. This is where the other
 # half of the device-specific product definition file takes care
 # of the aspects that require proprietary drivers that aren't
