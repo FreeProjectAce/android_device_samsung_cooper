@@ -112,10 +112,7 @@ PRODUCT_COPY_FILES += \
     device/samsung/cooper/prebuilt/modules/sec_param.ko:root/lib/modules/sec_param.ko \
     device/samsung/cooper/prebuilt/get_macaddrs:system/bin/get_macaddrs \
     device/samsung/cooper/prebuilt/cifs.ko:system/lib/modules/cifs.ko \
-    device/samsung/cooper/prebuilt/tun.ko:system/lib/modules/tun.ko\
-    device/samsung/cooper/prebuilt/librasdioif.ko:system/lib/modules/librasdioif.ko\
-    device/samsung/cooper/prebuilt/cpaccess.ko:system/lib/modules/cpaccess.ko
-    
+    device/samsung/cooper/prebuilt/tun.ko:system/lib/modules/tun.ko     
     
 #Kernel Modules for Recovery (RFS)
 PRODUCT_COPY_FILES += \
