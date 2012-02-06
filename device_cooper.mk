@@ -57,12 +57,21 @@ PRODUCT_PACKAGES += \
     flash_image \
     screencap
 
+ifeq ($(TARGET_PREBUILT_KERNEL),)
+	LOCAL_KERNEL := device/samsung/cooper/kernel
+else
+	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+endif
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_KERNEL):kernel
+
 # proprietary side of the device
 $(call inherit-product-if-exists, vendor/samsung/cooper/cooper-vendor.mk)
 
 # fstab
 PRODUCT_COPY_FILES += \
-    device/samsung/cooper/vold.fstab:system/etc/vold.fstab
+    device/samsung/cooper/prebuilt/vold.fstab:system/etc/vold.fstab
 
 # Init
 PRODUCT_COPY_FILES += \
@@ -71,13 +80,13 @@ PRODUCT_COPY_FILES += \
 
 # Audio
 PRODUCT_COPY_FILES += \
-    device/samsung/cooper/AudioFilter.csv:system/etc/AudioFilter.csv \
-    device/samsung/cooper/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt
+    device/samsung/cooper/prebuilt/AudioFilter.csv:system/etc/AudioFilter.csv \
+    device/samsung/cooper/prebuilt/AutoVolumeControl.txt:system/etc/AutoVolumeControl.txt
 
 # WLAN + BT
 PRODUCT_COPY_FILES += \
-	device/samsung/cooper/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
-    device/samsung/cooper/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
+    device/samsung/cooper/prebuilt/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf \
+    device/samsung/cooper/prebuilt/dhcpcd.conf:system/etc/dhcpcd/dhcpcd.conf \
     device/samsung/cooper/prebuilt/hostapd:system/bin/hostapd \
     device/samsung/cooper/prebuilt/hostapd.conf:system/etc/wifi/hostapd.conf
     
@@ -92,7 +101,7 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/base/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
-    frameworks/base/data/etc/android.hardware.touchscreen.multitouch.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.xml
+    frameworks/base/data/etc/android.hardware.touchscreen.multitouch.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.xml\
     frameworks/base/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
     frameworks/base/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml
 
@@ -101,10 +110,12 @@ PRODUCT_COPY_FILES += \
     device/samsung/cooper/prebuilt/modules/fsr.ko:root/lib/modules/fsr.ko \
     device/samsung/cooper/prebuilt/modules/fsr_stl.ko:root/lib/modules/fsr_stl.ko \
     device/samsung/cooper/prebuilt/modules/sec_param.ko:root/lib/modules/sec_param.ko \
-    device/samsung/cooper/prebuilt/ar6000.ko:system/wifi/ar6000.ko \
     device/samsung/cooper/prebuilt/get_macaddrs:system/bin/get_macaddrs \
-    device/samsung/cooper/prebuilt/cifs.ko:system/lib/modules/2.6.32.9-perf/cifs.ko \
-    device/samsung/cooper/prebuilt/zram.ko:system/lib/modules/2.6.32.9-perf/zram.ko
+    device/samsung/cooper/prebuilt/cifs.ko:system/lib/modules/cifs.ko \
+    device/samsung/cooper/prebuilt/tun.ko:system/lib/modules/tun.ko\
+    device/samsung/cooper/prebuilt/librasdioif.ko:system/lib/modules/librasdioif.ko\
+    device/samsung/cooper/prebuilt/cpaccess.ko:system/lib/modules/cpaccess.ko
+    
     
 #Kernel Modules for Recovery (RFS)
 PRODUCT_COPY_FILES += \
@@ -113,31 +124,17 @@ PRODUCT_COPY_FILES += \
     device/samsung/cooper/prebuilt/modules/recovery/rfs_fat.ko:recovery/root/lib/modules/rfs_fat.ko \
     device/samsung/cooper/prebuilt/modules/recovery/rfs_glue.ko:recovery/root/lib/modules/rfs_glue.ko \
     device/samsung/cooper/prebuilt/modules/recovery/sec_param.ko:recovery/root/lib/modules/sec_param.ko
-
-#WiFi firmware
-PRODUCT_COPY_FILES += \
-    device/samsung/cooper/firmware/athtcmd_ram.bin:system/wifi/ath6k/AR6003/hw2.0/athtcmd_ram.bin \
-    device/samsung/cooper/firmware/athwlan.bin.z77:system/wifi/ath6k/AR6003/hw2.0/athwlan.bin.z77 \
-    device/samsung/cooper/firmware/bdata.SD31.bin:system/wifi/ath6k/AR6003/hw2.0/bdata.SD31.bin \
-    device/samsung/cooper/firmware/bdata.SD31.bin.04:system/wifi/ath6k/AR6003/hw2.0/bdata.SD31.bin.04 \
-    device/samsung/cooper/firmware/data.patch.bin:system/wifi/ath6k/AR6003/hw2.0/data.patch.bin \
-    device/samsung/cooper/firmware/otp.bin.z77:system/wifi/ath6k/AR6003/hw2.0/otp.bin.z77
     
-#GPU firmware
-PRODUCT_COPY_FILES += \
-    device/samsung/cooper/firmware/yamato_pm4.fw:system/etc/firmware/yamato_pm4.fw \
-    device/samsung/cooper/firmware/yamato_pfp.fw:system/etc/firmware/yamato_pfp.fw
-
 #Media profile
 PRODUCT_COPY_FILES += \
-    device/samsung/cooper/media_profiles.xml:system/etc/media_profiles.xml \
+    device/samsung/cooper/prebuilt/media_profiles.xml:system/etc/media_profiles.xml \
     device/samsung/cooper/prebuilt/audio.conf:system/etc/bluetooth/audio.conf
 ## keymap
 PRODUCT_COPY_FILES += \
     device/samsung/cooper/prebuilt/qwerty.kl:system/usr/keylayout/qwerty.kl \
     device/samsung/cooper/prebuilt/sec_jack.kl:system/usr/keylayout/sec_jack.kl \
     device/samsung/cooper/prebuilt/sec_key.kl:system/usr/keylayout/sec_key.kl \
-    device/samsung/cooper/sec_touchscreen.kl:system/usr/keylayout/sec_touchscreen.kl
+    device/samsung/cooper/prebuilf/sec_touchscreen.kl:system/usr/keylayout/sec_touchscreen.kl
 
 PRODUCT_PROPERTY_OVERRIDES := \
     keyguard.no_require_sim=true \

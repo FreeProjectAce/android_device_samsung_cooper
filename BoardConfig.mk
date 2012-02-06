@@ -112,8 +112,6 @@ BOARD_BML_RECOVERY := "/dev/block/bml9"
 BOARD_RECOVERY_HANDLES_MOUNT := true
 BOARD_HAS_DOWNLOAD_MODE := true
 BOARD_LDPI_RECOVERY := true
-# enable touch??
-I_AM_KOUSH := true
 
 BOARD_CUSTOM_RECOVERY_KEYMAPPING:= ../../device/samsung/cooper/recovery/recovery_ui.c
 BOARD_CUSTOM_GRAPHICS           := ../../../device/samsung/cooper/recovery/graphics.c
