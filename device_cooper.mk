@@ -76,7 +76,11 @@ PRODUCT_COPY_FILES += \
 # Init
 PRODUCT_COPY_FILES += \
     device/samsung/cooper/init.gt-s5830.rc:root/init.gt-s5830.rc \
-    device/samsung/cooper/ueventd.gt-s5830.rc:root/ueventd.gt-s5830.rc
+    device/samsung/cooper/ueventd.gt-s5830.rc:root/ueventd.gt-s5830.rc\
+
+# 3d
+PRODUCT_COPY_FILES += \
+    device/samsung/cooper/egl.cfg:system/lib/egl/egl.cfg 
 
 # Audio
 PRODUCT_COPY_FILES += \
@@ -101,9 +105,9 @@ PRODUCT_COPY_FILES += \
     frameworks/base/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
     frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
     frameworks/base/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
-    frameworks/base/data/etc/android.hardware.touchscreen.multitouch.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.xml\
+    frameworks/base/data/etc/android.hardware.touchscreen.multitouch.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.xml \
     frameworks/base/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
-    frameworks/base/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml
+    frameworks/base/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions \ android.hardware.touchscreen.multitouch.distinct.xml
 
 #Kernel Modules
 PRODUCT_COPY_FILES += \
@@ -131,7 +135,7 @@ PRODUCT_COPY_FILES += \
     device/samsung/cooper/prebuilt/qwerty.kl:system/usr/keylayout/qwerty.kl \
     device/samsung/cooper/prebuilt/sec_jack.kl:system/usr/keylayout/sec_jack.kl \
     device/samsung/cooper/prebuilt/sec_key.kl:system/usr/keylayout/sec_key.kl \
-    device/samsung/cooper/prebuilf/sec_touchscreen.kl:system/usr/keylayout/sec_touchscreen.kl
+    device/samsung/cooper/prebuilt/sec_touchscreen.kl:system/usr/keylayout/sec_touchscreen.kl
 
 PRODUCT_PROPERTY_OVERRIDES := \
     keyguard.no_require_sim=true \
@@ -164,7 +168,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.media.dec.jpeg.memcap=20000000 \
     dalvik.vm.lockprof.threshold=500 \
     dalvik.vm.dexopt-flags=m=y \
-    dalvik.vm.heapsize=32m \
+    dalvik.vm.heapsize=48m \
     dalvik.vm.execution-mode=int:jit \
     dalvik.vm.dexopt-data-only=1 \
     ro.opengles.version=131072  \
