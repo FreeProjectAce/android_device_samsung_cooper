@@ -17,163 +17,110 @@
 DEVICE=cooper
 MANUFACTURER=samsung
 
-mkdir -p ../../../vendor/$MANUFACTURER/$DEVICE/proprietary
-unzip -j -o ../../../${DEVICE}_update.zip system/bin/qmuxd -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-chmod 755 ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/qmuxd
-unzip -j -o ../../../${DEVICE}_update.zip system/bin/akmd2 -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-chmod 755 ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/akmd2
-unzip -j -o ../../../${DEVICE}_update.zip system/bin/hci_qcomm_init -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-chmod 755 ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/hci_qcomm_init
+mkdir -p ./vendor/$MANUFACTURER/$DEVICE/proprietary/
+mkdir -p ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mkdir -p ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib/egl
+mkdir -p ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib/hw
+mkdir -p ./vendor/$MANUFACTURER/$DEVICE/proprietary/etc
+mkdir -p ./vendor/$MANUFACTURER/$DEVICE/proprietary/etc/firmware
+mkdir -p ./vendor/$MANUFACTURER/$DEVICE/proprietary/bin
+mkdir -p ./vendor/$MANUFACTURER/$DEVICE/proprietary/wifi
+mkdir -p ./vendor/$MANUFACTURER/$DEVICE/proprietary/wifi/ath6k
+mkdir -p ./vendor/$MANUFACTURER/$DEVICE/proprietary/wifi/ath6k/AR6003
+mkdir -p ./vendor/$MANUFACTURER/$DEVICE/proprietary/wifi/ath6k/AR6003/hw2.0
 
-unzip -j -o ../../../${DEVICE}_update.zip system/etc/init.qcom.bt.sh -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
+# rill
+mv ./cooper_update/system/lib/libril.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libsecril-client.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libsec-ril.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libdiag.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/bin/qmuxd ./vendor/$MANUFACTURER/$DEVICE/proprietary/bin
+mv ./cooper_update/system/bin/rild ./vendor/$MANUFACTURER/$DEVICE/proprietary/bin
 
-# EGL
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/egl/libEGL_adreno200.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/egl/libGLESv2_adreno200.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/egl/libGLESv1_CM_adreno200.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/egl/libq3dtools_adreno200.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libgsl.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/etc/firmware/yamato_pfp.fw -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/etc/firmware/yamato_pm4.fw -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
+# omx libs
+mv ./cooper_update/system/lib/libmm-adspsvc.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libOmxAacDec.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libOmxAacEnc.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libOmxAdpcmDec.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libOmxAmrDec.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libOmxAmrEnc.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libOmxAmrRtpDec.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libOmxAmrwbDec.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libOmxEvrcEnc.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libOmxEvrcHwDec.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libOmxH264Dec.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libOmxMp3Dec.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libOmxMpeg4Dec.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libOmxOn2Dec.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libOmxQcelp13Enc.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libOmxQcelpHwDec.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libOmxVidEnc.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libOmxWmaDec.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libOmxWmvDec.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
 
-#RIL files
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libril-qc-1.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libril-qcril-hook-oem.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libdiag.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/liboncrpc.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libqmi.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libdsm.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libqueue.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libdll.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libcm.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libmmgsdilib.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libgsdi_exp.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libgstk_exp.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libwms.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libnv.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libwmsts.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libpbmlib.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libdss.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libauth.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
+# omx shared libs
+mv ./cooper_update/system/lib/libomx_aacdec_sharedlibrary.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libomx_amrdec_sharedlibrary.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libomx_amrenc_sharedlibrary.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libomx_avcdec_sharedlibrary.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libomx_m4vdec_sharedlibrary.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libomx_mp3dec_sharedlibrary.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libomx_sharedlibrary.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
 
-#lights
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/hw/lights.msm7k.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
+# camera
+mv ./cooper_update/system/lib/liboemcamera.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libmmjpeg.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libmmipl.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libs3cjpeg.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libActionShot.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libarccamera.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libCaMotion.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libcaps.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libPanoraMax1.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libPlusMe.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libseccamera.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libseccameraadaptor.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libcamera.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libcamera_client.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libcameraservice.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
 
-#camera
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/liboemcamera.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libmmjpeg.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libmmipl.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
+# wifi
+mv ./cooper_update/system/wifi/ar6000.ko ./vendor/$MANUFACTURER/$DEVICE/proprietary/wifi
+mv ./cooper_update/system/wifi/ath6k/AR6003/hw2.0/athtcmd_ram.bin ./vendor/$MANUFACTURER/$DEVICE/proprietary/ath6k/AR6003/hw2.0
+mv ./cooper_update/system/wifi/ath6k/AR6003/hw2.0/athwlan.bin.z77 ./vendor/$MANUFACTURER/$DEVICE/proprietary/ath6k/AR6003/hw2.0
+mv ./cooper_update/system/wifi/ath6k/AR6003/hw2.0/bdata.SD31.bin ./vendor/$MANUFACTURER/$DEVICE/proprietary/ath6k/AR6003/hw2.0
+mv ./cooper_update/system/wifi/ath6k/AR6003/hw2.0/bdata.SD31.bin.04 ./vendor/$MANUFACTURER/$DEVICE/proprietary/ath6k/AR6003/hw2.0
+mv ./cooper_update/system/wifi/ath6k/AR6003/hw2.0/data.patch.bin ./vendor/$MANUFACTURER/$DEVICE/proprietary/ath6k/AR6003/hw2.0
+mv ./cooper_update/system/wifi/ath6k/AR6003/hw2.0/otp.bin.z77 ./vendor/$MANUFACTURER/$DEVICE/proprietary/ath6k/AR6003/hw2.0
+mv ./cooper_update/system/bin/hostapd ./vendor/$MANUFACTURER/$DEVICE/proprietary/bin
+mv ./cooper_update/system/bin/wlan_mac ./vendor/$MANUFACTURER/$DEVICE/proprietary/bin
+mv ./cooper_update/system/bin/wlan_tool ./vendor/$MANUFACTURER/$DEVICE/proprietary/bin
+mv ./cooper_update/system/bin/wmiconfig ./vendor/$MANUFACTURER/$DEVICE/proprietary/bin
 
-#OMX
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libOmxEvrcEnc.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libOmxAacDec.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libOmxWmvDec.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libOmxQcelpDec.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libOmxAmrEnc.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libOmxAdpcmDec.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libOmxEvrcDec.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libOmxH264Dec.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libOmxAmrDec.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libOmxAmrwbDec.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libOmxWmaDec.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libOmxQcelp13Enc.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libOmxMp3Dec.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libOmxMpeg4Dec.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libOmxVidEnc.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libOmxAmrRtpDec.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libOmxAacEnc.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libmm-adspsvc.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libomx_aacdec_sharedlibrary.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libomx_amrdec_sharedlibrary.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libomx_amrenc_sharedlibrary.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libomx_avcdec_sharedlibrary.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libomx_m4vdec_sharedlibrary.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libomx_mp3dec_sharedlibrary.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
-unzip -j -o ../../../${DEVICE}_update.zip system/lib/libomx_sharedlibrary.so -d ../../../vendor/$MANUFACTURER/$DEVICE/proprietary/
+# bluetooth
+mv ./cooper_update/system/bin/BCM2049C0_003.001.031.0088.0094.hcd ./vendor/$MANUFACTURER/$DEVICE/proprietary/bin
 
+# audio
+mv ./cooper_update/system/lib/liba2dp.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/libaudioeq.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
 
+# gps
+mv ./cooper_update/system/lib/hw/gps.msm7k.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib/hw
+mv ./cooper_update/system/bin/gpsd ./vendor/$MANUFACTURER/$DEVICE/proprietary/bin
 
+# lights
+mv ./cooper_update/system/lib/hw/lights.msm7k.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib/hw
 
-(cat << EOF) | sed s/__DEVICE__/$DEVICE/g | sed s/__MANUFACTURER__/$MANUFACTURER/g > ../../../vendor/$MANUFACTURER/$DEVICE/device-vendor-blobs.mk
-# Copyright (C) 2010 The Android Open Source Project
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+# sensor
+mv ./cooper_update/system/lib/hw/sensors.default.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib/hw
+mv ./cooper_update/system/bin/memsicd ./vendor/$MANUFACTURER/$DEVICE/proprietary/bin
 
-# This file is generated by device/__MANUFACTURER__/__DEVICE__/unzip-files.sh - DO NOT EDIT
-
-# All the blobs necessary for cooper
-PRODUCT_COPY_FILES += \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libEGL_adreno200.so:system/lib/egl/libEGL_adreno200.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libGLESv2_adreno200.so:system/lib/egl/libGLESv2_adreno200.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libGLESv1_CM_adreno200.so:system/lib/egl/libGLESv1_CM_adreno200.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libq3dtools_adreno200.so:system/lib/egl/libq3dtools_adreno200.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libgsl.so:system/lib//libgsl.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/yamato_pfp.fw:system/etc/firmware/yamato_pfp.fw \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/yamato_pm4.fw:system/etc/firmware/yamato_pm4.fw \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/qmuxd:system/bin/qmuxd \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/akmd2:system/bin/akmd2 \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libril-qc-1.so:system/lib/libril-qc-1.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libril-qcril-hook-oem.so:system/lib/libril-qcril-hook-oem.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libdiag.so:system/lib/libdiag.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/init.qcom.bt.sh:system/etc/init.qcom.bt.sh \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/liboncrpc.so:system/lib/liboncrpc.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libqmi.so:system/lib/libqmi.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libdsm.so:system/lib/libdsm.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libqueue.so:system/lib/libqueue.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libdll.so:system/lib/libdll.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libcm.so:system/lib/libcm.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libmmgsdilib.so:system/lib/libmmgsdilib.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libgsdi_exp.so:system/lib/libgsdi_exp.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libgstk_exp.so:system/lib/libgstk_exp.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libwms.so:system/lib/libwms.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libnv.so:system/lib/libnv.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libwmsts.so:system/lib/libwmsts.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libpbmlib.so:system/lib/libpbmlib.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libdss.so:system/lib/libdss.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libauth.so:system/lib/libauth.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/lights.msm7k.so:system/lib/hw/lights.msm7k.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/liboemcamera.so:system/lib/liboemcamera.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/liboemcamera.so:obj/lib/liboemcamera.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libmmjpeg.so:system/lib/libmmjpeg.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libmmipl.so:system/lib/libmmipl.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/hci_qcomm_init:system/bin/hci_qcomm_init\\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libOmxEvrcEnc.so:system/lib/libOmxEvrcEnc.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libOmxAacDec.so:system/lib/libOmxAacDec.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libOmxWmvDec.so:system/lib/libOmxWmvDec.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libOmxQcelpDec.so:system/lib/libOmxQcelpDec.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libOmxAmrEnc.so:system/lib/libOmxAmrEnc.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libOmxAdpcmDec.so:system/lib/libOmxAdpcmDec.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libOmxEvrcDec.so:system/lib/libOmxEvrcDec.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libOmxH264Dec.so:system/lib/libOmxH264Dec.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libOmxAmrDec.so:system/lib/libOmxAmrDec.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libOmxAmrwbDec.so:system/lib/libOmxAmrwbDec.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libOmxWmaDec.so:system/lib/libOmxWmaDec.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libOmxQcelp13Enc.so:system/lib/libOmxQcelp13Enc.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libOmxMp3Dec.so:system/lib/libOmxMp3Dec.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libOmxMpeg4Dec.so:system/lib/libOmxMpeg4Dec.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libOmxVidEnc.so:system/lib/libOmxVidEnc.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libOmxAmrRtpDec.so:system/lib/libOmxAmrRtpDec.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libOmxAacEnc.so:system/lib/libOmxAacEnc.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libmm-adspsvc.so:system/lib/libmm-adspsvc.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libomx_aacdec_sharedlibrary.so:system/lib/libomx_aacdec_sharedlibrary.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libomx_amrdec_sharedlibrary.so:system/lib/libomx_amrdec_sharedlibrary.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libomx_amrenc_sharedlibrary.so:system/lib/libomx_amrenc_sharedlibrary.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libomx_avcdec_sharedlibrary.so:system/lib/libomx_avcdec_sharedlibrary.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libomx_m4vdec_sharedlibrary.so:system/lib/libomx_m4vdec_sharedlibrary.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libomx_mp3dec_sharedlibrary.so:system/lib/libomx_mp3dec_sharedlibrary.so \\
-    vendor/__MANUFACTURER__/__DEVICE__/proprietary/libomx_sharedlibrary.so:system/lib/libomx_sharedlibrary.so
-
-
-EOF
-
-./setup-makefiles.sh
+# camera
+mv ./cooper_update/system/lib/egl/libGLESv1_CM_adreno200.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib/egl
+mv ./cooper_update/system/lib/egl/libq3dtools_adreno200.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib/egl
+mv ./cooper_update/system/lib/egl/libEGL_adreno200.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib/egl
+mv ./cooper_update/system/lib/egl/libGLESv2_adreno200.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib/egl
+mv ./cooper_update/system/etc/firmware/yamato_pfp.fw ./vendor/$MANUFACTURER/$DEVICE/proprietary/etc/firmware
+mv ./cooper_update/system/etc/firmware/yamato_pm4.fw ./vendor/$MANUFACTURER/$DEVICE/proprietary/etc/firmware
+mv ./cooper_update/system/lib/libgsl.so ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib
+mv ./cooper_update/system/lib/egl/egl.cfg ./vendor/$MANUFACTURER/$DEVICE/proprietary/lib/egl
