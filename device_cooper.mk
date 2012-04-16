@@ -43,9 +43,7 @@ PRODUCT_PACKAGES += \
     SamsungServiceMode \
     bdaddr_read \
     toggleshutter \
-    patchlcs \
     dexpreopt \
-    dump_image \
     e2fsck \
     brcm_patchram_plus \
     sec_touchscreen.kcm \
@@ -53,8 +51,6 @@ PRODUCT_PACKAGES += \
     lights.cooper \
     gralloc.cooper \
     setup_fs \
-    erase_image \
-    flash_image \
     screencap
 
 ifeq ($(TARGET_PREBUILT_KERNEL),)
@@ -76,7 +72,7 @@ PRODUCT_COPY_FILES += \
 # Init
 PRODUCT_COPY_FILES += \
     device/samsung/cooper/init.gt-s5830.rc:root/init.gt-s5830.rc \
-    device/samsung/cooper/ueventd.gt-s5830.rc:root/ueventd.gt-s5830.rc\
+    device/samsung/cooper/ueventd.gt-s5830.rc:root/ueventd.gt-s5830.rc
 
 # 3d
 PRODUCT_COPY_FILES += \
@@ -168,7 +164,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.media.dec.jpeg.memcap=20000000 \
     dalvik.vm.lockprof.threshold=500 \
     dalvik.vm.dexopt-flags=m=y \
-    dalvik.vm.heapsize=48m \
+    dalvik.vm.heapsize=32m \
     dalvik.vm.execution-mode=int:jit \
     dalvik.vm.dexopt-data-only=1 \
     ro.opengles.version=131072  \

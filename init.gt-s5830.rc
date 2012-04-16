@@ -231,16 +231,8 @@ service get_macaddrs /system/bin/get_macaddrs
 
 on property:init.svc.ril-daemon=running
     start get_macaddrs
-
-# bugreport is triggered by holding down the KEY_VOLUMEUP and KEY_HOME keycodes
-service bugreport /system/bin/dumpstate -d -v -o /sdcard/bugreports/bugreport
-    disabled
-    oneshot
-    keycodes 115 102
-
-# reboot is triggered by holding down the KEY_VOLUMEDOWN and KEY_POWER keycodes
-service reboot_key /system/bin/reboot
+    
+service memsicd /system/vendor/bin/memsicd
     user system
+    group system
     oneshot
-    keycodes 114 107
-    disabled
